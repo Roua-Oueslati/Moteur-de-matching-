@@ -4,7 +4,7 @@ public class Levenshtein implements ComparateurChaine {
 	
 	public double comparer(String nom1 , String nom2) {
 		
-		if (nom1 != null || nom2 != null) {
+		if (nom1 != null && nom2 != null) {
 	        int nom1Length = nom1.length();
 	        int nom2Length = nom2.length();
 	        if (nom1Length == 0) {

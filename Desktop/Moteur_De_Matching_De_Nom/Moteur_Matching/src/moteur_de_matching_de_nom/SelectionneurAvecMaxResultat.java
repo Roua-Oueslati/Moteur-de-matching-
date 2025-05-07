@@ -14,10 +14,11 @@ public class SelectionneurAvecMaxResultat implements SelectionneurDeResultat {
 		
 		List<IdNomScore> listSelectionné = new ArrayList<IdNomScore>();
 		for(CoupleDeNomAvecScore couple : List1) {
-			IdNomScore coupleFinal = new IdNomScore(couple.nom2().getId(), couple.nom2().getNomOriginal(), couple.score());
+			IdNomScore coupleFinal = new IdNomScore(couple.nom2().getId(), couple.getNom2(), couple.getScore());
 			listSelectionné.add(coupleFinal);
 		}
-		return listSelectionné.subList(0, maxResultat);
+		int actualSize = Math.min(maxResultat, listSelectionné.size());
+		return listSelectionné.subList(0, actualSize);
 	}
 
 }

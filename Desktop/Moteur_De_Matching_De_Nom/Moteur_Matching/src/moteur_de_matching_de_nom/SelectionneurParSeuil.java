@@ -17,13 +17,13 @@ public class SelectionneurParSeuil  implements SelectionneurDeResultat{
 		for (CoupleDeNomAvecScore couple : List1) {
 			if (ch.estUneDistance() == false) {
 				if (couple.score() <= seuil) {
-					IdNomScore coupleFinal = new IdNomScore(couple.nom2().getId(), couple.nom2().getNomOriginal(), couple.score());
+					IdNomScore coupleFinal = new IdNomScore(couple.nom2().getId(), couple.getNom2(), couple.getScore());
 					listSelectionné.add(coupleFinal);
 				}
 			}
 			if (ch.estUneDistance() == true) {
 				if (couple.score() >= seuil) {
-					IdNomScore coupleFinal = new IdNomScore(couple.nom2().getId(), couple.nom2().getNomOriginal(), couple.score());
+					IdNomScore coupleFinal = new IdNomScore(couple.nom2().getId(), couple.getNom2(), couple.getScore());
 					listSelectionné.add(coupleFinal);
 				}
 				

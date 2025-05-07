@@ -4,10 +4,8 @@ import java.util.List;
 
 public abstract class  Encodeur implements Preprocesseur{
 	
-	public abstract  List<Preprocesseur> prétraiter(List<String> L);
+	public abstract  List<String> prétraiter(List<String> L);
 	
-	public boolean estPrétraiter() {
-		return true;
-	}
+
 	
 }

@@ -9,4 +9,11 @@ public class Egalite implements ComparateurChaine{
 		}
 		return nom1.equals(nom2) ? 1.0 : 0.0;
 	}
+	
+	
+	public boolean estUneDistance() {
+		return false;
+	}
+
+
 }

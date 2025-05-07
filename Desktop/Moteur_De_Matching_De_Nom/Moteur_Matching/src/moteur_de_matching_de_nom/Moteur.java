@@ -10,6 +10,7 @@ public class Moteur {
 	private ComparateurNom compNom;
 	private Recuperateur fich;
 	private Configuration config;
+	private Preprocesseur preProc;
 	
 	public Moteur (GenerateurDeCandidat genCond, SelectionneurDeResultat selectRes, ComparateurNom compNom) {
 		this.compNom=compNom;
@@ -27,6 +28,16 @@ public class Moteur {
 		this.fich=fich;
 	}
 	
+	
+	public Moteur (GenerateurDeCandidat genCond, SelectionneurDeResultat selectRes, ComparateurNom compNom, Preprocesseur preProc) {
+		this.compNom=compNom;
+		this.genCond=genCond;
+		this.selectRes=selectRes;
+		this.listDePrétaiteur= new ArrayList<Preprocesseur>();
+		this.preProc = preProc;
+	}
+	
+	
 	public List<IdNomScore> rechercher(Nom nom, List<Nom> l) {
 		List <Nom> ListDeNom = new ArrayList<Nom>();
 		ListDeNom.add(nom);
@@ -35,7 +46,7 @@ public class Moteur {
 		List <CoupleDeNomAvecScore> candidatComparé = new ArrayList<CoupleDeNomAvecScore>();
 		candidat = this.genCond.genererUnCandidat(ListDeNom,l);
 		for (CoupleDeNom couple : candidat) {
-			double score=compNom.comparerNom(couple.getNom1().getNomOriginal(), couple.getNom2().getNomOriginal());
+			double score=compNom.comparerNom(couple.getNom1(), couple.getNom2());
 			CoupleDeNomAvecScore coupleEtScore = new CoupleDeNomAvecScore(couple.getNom1(),couple.getNom2(), score);
 			candidatComparé.add(coupleEtScore);
 		}
