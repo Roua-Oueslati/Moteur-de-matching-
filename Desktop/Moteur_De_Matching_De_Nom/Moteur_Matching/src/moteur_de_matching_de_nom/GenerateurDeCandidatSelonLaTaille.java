@@ -4,13 +4,7 @@ import java.util.ArrayList;
 
 
 public class GenerateurDeCandidatSelonLaTaille implements GenerateurDeCandidat{
-	
-	//Indexeur index;
-	
-	//public GenerateurDeCandidatSelonLaTaille(Indexeur index) {
-		//this.index=index;
-	//}
-	
+
 	public List<CoupleDeNom> genererUnCandidat(List<Nom> List1, List<Nom> List2){
 		List<CoupleDeNom> listDeCandidat = new ArrayList<CoupleDeNom>();
 		

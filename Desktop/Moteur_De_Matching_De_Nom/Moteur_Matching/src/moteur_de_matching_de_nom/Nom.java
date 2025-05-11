@@ -4,11 +4,11 @@ import java.util.List;
 
 public class Nom {
 	
-	private String nomOriginal;
 	private String identifiant;
+	private String nomOriginal;
 	private List<String> listDeNomPretraite;
 	
-	public Nom(String nomOriginal, String identifiant) {
+	public Nom( String identifiant , String nomOriginal) {
 		this.identifiant=identifiant;
 		this.nomOriginal=nomOriginal;
 	}
@@ -30,6 +30,21 @@ public class Nom {
 	public void setListDeNomPretraite(List<String> listDeNomPretraite) {
 		this.listDeNomPretraite = listDeNomPretraite;
 	}
-	 
+	
+	@Override
+	public boolean equals(Object o) {
+	    if (o instanceof Nom) {
+	    	Nom nom=(Nom) o;
+	    	if (this.nomOriginal==nom.getNomOriginal()) {
+	    		return true;
+	    	}
+	    }
+	    return false;
+	}
+
+	@Override
+	public int hashCode() {
+	    return nomOriginal.hashCode(); 
+	}
 
 }

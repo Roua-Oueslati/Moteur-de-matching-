@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GenerateurTrivial implements GenerateurDeCandidat{
+	
+
 	public List <CoupleDeNom> genererUnCandidat(List <Nom> list1 ,List<Nom> List2){
 		List<CoupleDeNom> listDeCandidat = new ArrayList<CoupleDeNom>();
 		

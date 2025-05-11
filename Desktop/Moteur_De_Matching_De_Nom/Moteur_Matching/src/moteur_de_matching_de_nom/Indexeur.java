@@ -5,6 +5,6 @@ import java.util.List;
 public interface Indexeur {
 	
 	public void indexer(List<String> noms);
-	 public void afficherIndex();
+	 
 
 }

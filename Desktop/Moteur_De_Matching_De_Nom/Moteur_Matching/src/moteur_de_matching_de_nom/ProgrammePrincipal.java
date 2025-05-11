@@ -6,49 +6,51 @@ import java.util.ArrayList;
 public class ProgrammePrincipal {
 
     public static void main(String[] args) {
-        Nom nomRecherche = new Nom("Mohammed Ben Salim", "0");
+        Nom nomRecherche = new Nom("kim Sung-du", "0");
 
-        List<Nom> list = new ArrayList<>();
-        list.add(new Nom("Mohamed ben Salem", "1"));
-        list.add(new Nom("Muhammed Ben Salim", "2"));
-        list.add(new Nom("Mohammed Ben Slim", "3"));
-        list.add(new Nom("Ahmad Ben Saleh", "4"));
-        list.add(new Nom("Mohamet Ben Salim", "5"));
-        list.add(new Nom("Mohammed Ibn Salim", "6"));
-        list.add(new Nom("Mouhamad Bensalem", "7"));
-        list.add(new Nom("Jaafar Ibn Ali", "8"));
-        list.add(new Nom("Sara Ben Ahmed", "9"));
-        list.add(new Nom("Ali Ben Youssef", "10"));
+       // List<Nom> list = new ArrayList<>();
+       // list.add(new Nom("Mohamed ben Salem", "1"));
+        //list.add(new Nom("Muhammed Ben Salim", "2"));
+        //list.add(new Nom("Mohammed Ben Slim", "3"));
+        //list.add(new Nom("Ahmad Ben Saleh", "4"));
+        //list.add(new Nom("Mohamet Ben Salim", "5"));
+        //list.add(new Nom("Mohammed Ibn Salim", "6"));
+        //list.add(new Nom("Mouhamad Bensalem", "7"));
+        //list.add(new Nom("Jaafar Ibn Ali", "8"));
+        //list.add(new Nom("Sara Ben Ahmed", "9"));
+        //list.add(new Nom("Ali Ben Youssef", "10"));
         
         System.out.println("Nom recherché: " + nomRecherche.getNomOriginal());
-        
+        RecuperateurCSV recep = new RecuperateurCSV("C:/Users/user/Downloads/peps_names_100.csv");
+        List<Nom> list= recep.recuperer();
         //EncodeurPhonétique encodeur = new EncodeurPhonétique();
         //EncodeurSoundex encodeur = new EncodeurSoundex();
-        Normaliseur encodeur = new Normaliseur();
+        //Normaliseur encodeur = new Normaliseur();
         //IndexArbre index = new IndexArbre();
-        IndexDictionnaire index = new IndexDictionnaire();
+       // IndexDictionnaire index = new IndexDictionnaire();
         
-        pretraiterNoms(nomRecherche, list, encodeur);
+       //pretraiterNoms(nomRecherche, list, encodeur);
         
-        List<String> nomsPretraites = new ArrayList<>();
-        for (Nom nom : list) {
-            for (String partie : nom.getListDeNomPretraite()) {
-                nomsPretraites.add(partie);
-            }
-        }
-        index.indexer(nomsPretraites);
+        //List<String> nomsPretraites = new ArrayList<>();
+        //for (Nom nom : list) {
+          //for (String partie : nom.getListDeNomPretraite()) {
+                //nomsPretraites.add(partie);
+           // }
+        //}
+        //index.indexer(nomsPretraites);
         
         //GenerateurDeCandidatSelonLaTaille generateur = new GenerateurDeCandidatSelonLaTaille();
         GenerateurTrivial generateur = new GenerateurTrivial();
         // Comparateur de noms avec liste prétraitée
         //ComparateurNomAveclistePretraite comparateur = new ComparateurNomAveclistePretraite();
         Levenshtein lev = new Levenshtein();
+       // ComparateurNomSansComparateurDeChaine comparateur = new ComparateurNomSansComparateurDeChaine();
         ComparateurNomAvecComparateurChaine comparateur = new ComparateurNomAvecComparateurChaine(lev);
         SelectionneurAvecMaxResultat selecteur = new SelectionneurAvecMaxResultat(3);
         
-        Configuration config = new Configuration(encodeur, index, new Levenshtein(), 0.5, 3);
+        //Configuration config = new Configuration(encodeur, index, new Levenshtein(), 0.5, 3);
         
-        Moteur moteur = new Moteur(generateur, selecteur, comparateur, encodeur);
+        Moteur moteur = new Moteur(generateur, selecteur, comparateur);
         
         List<IdNomScore> resultats = moteur.rechercher(nomRecherche, list);
         
@@ -66,7 +68,7 @@ public class ProgrammePrincipal {
         
         //  Affichage de l'index
         System.out.println("\nContenu de l'index :");
-        index.afficherIndex();
+        //index.afficherIndex();
     }
     
  
