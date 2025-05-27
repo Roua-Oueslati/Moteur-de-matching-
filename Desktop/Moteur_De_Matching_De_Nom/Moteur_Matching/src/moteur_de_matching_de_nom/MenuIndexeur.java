@@ -16,13 +16,27 @@ public class MenuIndexeur {
 
         switch (choix) {
             case 1:
-            	indexeur = new IndexDictionnaire();
+            	IndexDictionnaire index = new IndexDictionnaire();
+            	indexeur = (Indexeur) index;
                 break;
            
             default:
                 System.out.println("Choix invalide !");
         }
         return indexeur;
+    }
+
+	public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Indexeur indexeur = choisirIndexeur(scanner);
+
+        if (indexeur != null) {
+            System.out.println("Indexeur sélectionné : " + indexeur.getClass().getSimpleName());
+        } else {
+            System.out.println("Aucun indexeur n'a été sélectionné.");
+        }
+
+        scanner.close();
     }
 
 

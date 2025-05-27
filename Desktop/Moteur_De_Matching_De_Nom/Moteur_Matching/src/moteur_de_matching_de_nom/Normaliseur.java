@@ -1,41 +1,36 @@
 package moteur_de_matching_de_nom;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
 import java.text.Normalizer;
+
 
 public class Normaliseur implements Preprocesseur{
 		
-		public List<String> prétraiter(List<String> L){
+		public List<String> prétraiter(Nom nom){
 			
 			List<String> listeNormalisee = new ArrayList<String>();
-			for (String element : L) {
-				if( element == null ) {
-					continue;
-				}
+			String nomOriginal = nom.getNomOriginal();
 				// Supprimer les espaces inutiles
-	            element = element.trim();
+	            nomOriginal = nomOriginal.trim();
 	            
 	            // Convertir en minuscules
-	            element = element.toLowerCase();
+	            nomOriginal = nomOriginal.toLowerCase();
 	            
 	           // Supprimer les accents
-	            element = supprimerAccents(element);
+	            nomOriginal = supprimerAccents(nomOriginal);
 	            
 	           // Supprimer les caractères spéciaux
-	            element = element.replaceAll("[^\\w\\s]", "");
+	            nomOriginal = nomOriginal.replaceAll("[^\\w\\s]", "");
 
 	            // Ajouter à la liste normalisée si non vide
-	            if (!element.isEmpty()) {
-	                listeNormalisee.add(element);
+	            if (!nomOriginal.isEmpty()) {
+	                listeNormalisee.add(nomOriginal);
 	            }
-	        }
 			 return listeNormalisee;
 			}
 		private static String supprimerAccents(String texte) {
 	        return Normalizer.normalize(texte, Normalizer.Form.NFD).replaceAll("\\p{M}", "");
-	    }
-
+		}
 		
 
 }

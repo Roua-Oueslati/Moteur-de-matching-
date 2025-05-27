@@ -7,8 +7,7 @@ public class MenuSelectionneur {
 
 	
 	public static SelectionneurDeResultat choisirSelectionneur(Scanner scanner) {
-		
-		SelectionneurDeResultat selectionneur = null;
+		SelectionneurDeResultat selector = null;
 		
 		System.out.println("--- MENU SELECTIONNEUR DE RESULTAT ---");
         System.out.println("1. Sélectionneur avec max de resultat");
@@ -21,24 +20,39 @@ public class MenuSelectionneur {
             case 1:
             	System.out.println("Choisir le nombre de resultats : ");
             	int maxResultat = scanner.nextInt();
-            	selectionneur = new SelectionneurAvecMaxResultat(maxResultat);
+            	SelectionneurAvecMaxResultat selectionneur = new SelectionneurAvecMaxResultat(maxResultat);
+            	selector =(SelectionneurDeResultat) selectionneur;
                 break;
                 
             case 2:
             	System.out.println("Choisir le seuil : ");
             	double seuil = scanner.nextDouble();
-            	selectionneur = new SelectionneurParSeuil(seuil);
+            	SelectionneurParSeuil selectionneur1 = new SelectionneurParSeuil(seuil);
+            	selector = (SelectionneurDeResultat) selectionneur1;
                 break;
                 
             case 3:            	
-            	selectionneur= new SelectionneurDeRésultatSansOptions();
+            	SelectionneurDeRésultatSansOptions selectionneur2 = new SelectionneurDeRésultatSansOptions();
+            	selector = (SelectionneurDeResultat) selectionneur2;
                 break;
                 
             default:
                 System.out.println("Choix invalide !");
 
         }
-        return selectionneur;
+        return selector;
+    }
+	public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        SelectionneurDeResultat selectionneur = choisirSelectionneur(scanner);
+
+        if (selectionneur != null) {
+            System.out.println("Sélectionneur sélectionné : " + selectionneur.getClass().getSimpleName());
+        } else {
+            System.out.println("Aucun sélectionneur n'a été sélectionné.");
+        }
+
+        scanner.close();
     }
 
 

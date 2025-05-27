@@ -5,21 +5,11 @@ package moteur_de_matching_de_nom;
 
 public class EncodeurPhonétique extends Encodeur {
 	    
-	    public List<String> prétraiter(List<String> L) {
-	        if (L == null || L.isEmpty()) {
-	            return new ArrayList<>();
-	        }
-	        
-	        List<String> resultat = new ArrayList<>();
-	        
-	        for (String mot : L) {
-	            if (mot != null) {
-	                resultat.add(encoderPhonétique(mot));
-	            } else {
-	                resultat.add("");
-	            }
-	        }
-	        
+	 public List<String> prétraiter(Nom nom) {
+
+	        List<String> resultat = new ArrayList<String>();
+	        String nomEncodé = encoderPhonétique(nom.getNomOriginal());
+	        resultat.add(nomEncodé);
 	        return resultat;
 	    }
 	    
@@ -71,5 +61,4 @@ public class EncodeurPhonétique extends Encodeur {
 	        // Limiter à 4 caractères
 	        return code.substring(0, Math.min(4, code.length()));
 	    }
-	}
-
+}

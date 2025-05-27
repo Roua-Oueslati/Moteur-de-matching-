@@ -1,5 +1,8 @@
 package moteur_de_matching_de_nom;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ComparateurNomAveclistePretraite implements ComparateurNom {
 	
 	public double comparerNom(Nom nom1, Nom nom2) {
@@ -9,7 +12,7 @@ public class ComparateurNomAveclistePretraite implements ComparateurNom {
 		
 		for (String ch1 : nom1.getListDeNomPretraite()) {
 			for (String ch2 : nom2.getListDeNomPretraite()) {
-				if (ch1.length()!=0 || ch2.length()!=0) {
+				if (!ch1.isEmpty() && !ch2.isEmpty()) {
 					nbrtotal++;
 					if(ch1.equals(ch2)) {
 						correspondance++;

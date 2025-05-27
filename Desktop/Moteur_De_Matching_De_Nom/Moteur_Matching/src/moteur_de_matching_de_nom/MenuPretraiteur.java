@@ -19,15 +19,19 @@ public class MenuPretraiteur {
         scanner.nextLine(); 
         switch (choix) {
             case 1:
-            	preprocesseur = new  EncodeurPhonétique();	
+            	EncodeurPhonétique prepro = new  EncodeurPhonétique();	
+            	preprocesseur = (Preprocesseur) prepro;
                 break;
                 
             case 2:
-            	preprocesseur = new EncodeurSoundex();
+            	EncodeurSoundex prepro1 = new EncodeurSoundex();
+            	preprocesseur = (Preprocesseur) prepro1;
             	break;
             	
             case 3:
-            	preprocesseur = new Normaliseur();
+            	Normaliseur prepro2 = new Normaliseur();
+            	preprocesseur = (Preprocesseur) prepro2;
+
             	break;
             case 4 :
             	break;
@@ -35,6 +39,18 @@ public class MenuPretraiteur {
                 System.out.println("Choix invalide !"); 
         }
         return preprocesseur;
+    }
+	public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Preprocesseur preprocesseur = choisirPretraiteur(scanner);
+
+        if (preprocesseur != null) {
+            System.out.println("Préprocesseur sélectionné : " + preprocesseur.getClass().getSimpleName());
+        } else {
+            System.out.println("Aucun prétraitement sélectionné.");
+        }
+
+        scanner.close();
     }
 
 

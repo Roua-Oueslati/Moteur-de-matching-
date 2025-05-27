@@ -18,7 +18,8 @@ public class MenuComparateur {
 
         switch (choix) {
             case 1:
-            	comparateurNom  = new ComparateurNomSansComparateurDeChaine();
+            	ComparateurNomSansComparateurDeChaine comp  = new ComparateurNomSansComparateurDeChaine();
+            	comparateurNom = (ComparateurNom) comp;
                 break;
             case 2:
             	System.out.println("Choisir le comparateur à utiliser :");
@@ -27,12 +28,14 @@ public class MenuComparateur {
             	int choice = scanner.nextInt();
             	switch (choice) {
             		case 1:
-            			JaroWinkler jaro= new JaroWinkler();
-            			comparateurNom  = new ComparateurNomAvecComparateurChaine(jaro);
+            			 JaroWinkler jaro= new JaroWinkler();
+            			 ComparateurNomAvecComparateurChaine comp2  = new ComparateurNomAvecComparateurChaine(jaro);
+            			 comparateurNom = (ComparateurNom) comp2;
                     	break;
             		case 2:
             			Levenshtein lev= new Levenshtein();
-            			comparateurNom  = new ComparateurNomAvecComparateurChaine(lev);
+            			ComparateurNomAvecComparateurChaine comp3  = new ComparateurNomAvecComparateurChaine(lev);
+            			comparateurNom = (ComparateurNom) comp3;
                     	break;
                     default:
                     	System.out.println("choix invalide !");
@@ -40,13 +43,26 @@ public class MenuComparateur {
             	
             	break;
             case 3:
-            	comparateurNom  = new ComparateurNomAveclistePretraite();            	
+            	ComparateurNomAveclistePretraite comp4  = new ComparateurNomAveclistePretraite();  
+            	comparateurNom = (ComparateurNom) comp4;
             	break;
             default:
                 System.out.println("Choix invalide !");
                 
         }
         return comparateurNom ;
+    }
+	public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ComparateurNom compNom = choisirComparateur(scanner);
+
+        if (compNom != null) {
+            System.out.println("Comparateur sélectionné : " + compNom.getClass().getSimpleName());
+        } else {
+            System.out.println("Aucun comparateur n'a été sélectionné.");
+        }
+
+        scanner.close();
     }
 
 }

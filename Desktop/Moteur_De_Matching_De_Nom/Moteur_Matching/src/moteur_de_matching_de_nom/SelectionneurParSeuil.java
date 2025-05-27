@@ -13,23 +13,14 @@ public class SelectionneurParSeuil  implements SelectionneurDeResultat{
 	}
 	
 	public List<IdNomScore> selectionner(List<CoupleDeNomAvecScore> List1){
-		List<IdNomScore> listSelectionné = new ArrayList<IdNomScore>();
-		for (CoupleDeNomAvecScore couple : List1) {
-			if (ch.estUneDistance() == false) {
-				if (couple.score() <= seuil) {
-					IdNomScore coupleFinal = new IdNomScore(couple.nom2().getId(), couple.getNom2(), couple.getScore());
-					listSelectionné.add(coupleFinal);
-				}
-			}
-			if (ch.estUneDistance() == true) {
-				if (couple.score() >= seuil) {
-					IdNomScore coupleFinal = new IdNomScore(couple.nom2().getId(), couple.getNom2(), couple.getScore());
-					listSelectionné.add(coupleFinal);
-				}
-				
+		List <IdNomScore> listeChoisie = new ArrayList<IdNomScore>();
+		for(CoupleDeNomAvecScore element : List1) {
+			if (element.getScore()>=seuil) {
+				IdNomScore coupleFinal = new IdNomScore(element.nom2().getId(), element.getNom2(), element.getScore());
+				listeChoisie.add(coupleFinal);
 			}
 		}
-		return listSelectionné;
+		return listeChoisie;
 	}
 
 }

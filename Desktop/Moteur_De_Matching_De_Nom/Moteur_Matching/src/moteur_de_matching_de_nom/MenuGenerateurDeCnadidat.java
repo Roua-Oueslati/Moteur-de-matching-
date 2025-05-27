@@ -6,8 +6,8 @@ public class MenuGenerateurDeCnadidat {
 
 	public static GenerateurDeCandidat choisirGenerateur(Scanner scanner) {
 		
-		GenerateurDeCandidat generateur = null;
-		
+		GenerateurDeCandidat generator = null;
+		Indexeur index = null;
 		System.out.println("--- MENU GENERATEUR DE CANDIDAT ---");
         System.out.println("1. Générateur de candidat par index");
         System.out.println("2. Génerateur de candidat Trivial");
@@ -17,23 +17,41 @@ public class MenuGenerateurDeCnadidat {
 
         switch (choix) {
             case 1:
-            	IndexDictionnaire index = new IndexDictionnaire();
-            	generateur = new GenerateurDeCandidatParIndex(index);
+            	
+            	GenerateurDeCandidatParIndex generateur = new GenerateurDeCandidatParIndex(index);
+            	generator = (GenerateurDeCandidat) generateur;
+            	
                 break;
+
                 
             case 2:
-            	generateur = new GenerateurTrivial();
+            	GenerateurTrivial generateur1 = new GenerateurTrivial();
+            	generator = (GenerateurDeCandidat) generateur1;
             	break;
             	
             case 3:
-            	generateur = new GenerateurDeCandidatSelonLaTaille();          	
+            	GenerateurDeCandidatSelonLaTaille generateur2 = new GenerateurDeCandidatSelonLaTaille();   
+            	generator = (GenerateurDeCandidat) generateur2;
             	break;
             	
             default:
                 System.out.println("Choix invalide ! ");
         }
-        return generateur;
+        return generator;
     }
+	public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        GenerateurDeCandidat generateur = choisirGenerateur(scanner);
+
+        if (generateur != null) {
+            System.out.println("Générateur sélectionné : " + generateur.getClass().getSimpleName());
+        } else {
+            System.out.println("Aucun générateur n'a été sélectionné.");
+        }
+
+        scanner.close();
+    }
+
 
 }
 

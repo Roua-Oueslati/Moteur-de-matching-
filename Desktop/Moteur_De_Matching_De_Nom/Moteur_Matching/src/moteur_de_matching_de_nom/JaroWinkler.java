@@ -60,7 +60,7 @@ public class JaroWinkler implements ComparateurChaine{
 	
 	
 	public boolean estUneDistance() {
-		return false ;
+		return false;
 	}
 }
 

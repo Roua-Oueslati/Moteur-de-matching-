@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface Preprocesseur {
 	
-	public List<String> prétraiter(List<String> L);
+	public List<String> prétraiter(Nom nom);
 	
 	
 

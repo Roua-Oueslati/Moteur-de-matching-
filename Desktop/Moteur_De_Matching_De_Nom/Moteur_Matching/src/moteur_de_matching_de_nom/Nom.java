@@ -1,5 +1,6 @@
 package moteur_de_matching_de_nom;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Nom {
@@ -8,9 +9,10 @@ public class Nom {
 	private String nomOriginal;
 	private List<String> listDeNomPretraite;
 	
-	public Nom( String identifiant , String nomOriginal) {
+	public Nom( String identifiant , String nomOriginal ) {
 		this.identifiant=identifiant;
 		this.nomOriginal=nomOriginal;
+		this.listDeNomPretraite= new ArrayList<String>();
 	}
 	
 
@@ -35,9 +37,10 @@ public class Nom {
 	public boolean equals(Object o) {
 	    if (o instanceof Nom) {
 	    	Nom nom=(Nom) o;
-	    	if (this.nomOriginal==nom.getNomOriginal()) {
-	    		return true;
-	    	}
+	    	return(this.nomOriginal.equals(nom));
+	    	//if (this.nomOriginal==nom.getNomOriginal()) {
+	    		//return true;
+	    	//}
 	    }
 	    return false;
 	}
@@ -45,6 +48,9 @@ public class Nom {
 	@Override
 	public int hashCode() {
 	    return nomOriginal.hashCode(); 
+	}
+	public String toString() {
+		return "ID:"+" "+identifiant+" "+"Nom:"+" "+nomOriginal;
 	}
 
 }
